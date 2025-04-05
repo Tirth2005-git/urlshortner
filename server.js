@@ -1,7 +1,7 @@
 import http from "http";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
-import { error, log } from "console";
+
 
 const PORT = 5000;
 async function serveFile(res, pathf, content) {
@@ -12,7 +12,7 @@ async function serveFile(res, pathf, content) {
   } catch (err) {
     res.writeHead(404, { "content-type": "text/plain" });
     res.end("page not found");
-    console.log(err);
+   
   }
 }
 
@@ -21,7 +21,8 @@ async function loadFile(url) {
     let data = await readFile(url, "utf-8");
     return JSON.parse(data);
   } catch (err) {
-    console.log(err);
+    res.writeHead(400, { "content-type": "text/plain" });
+    return res.end("an error has occured");
   }
 }
 
@@ -29,7 +30,8 @@ async function saveLink(url, links) {
   try {
     await writeFile(url, JSON.stringify(links));
   } catch (err) {
-    console.log(err);
+    res.writeHead(400, { "content-type": "text/plain" });
+    return res.end("an error has occured");
   }
 }
 
