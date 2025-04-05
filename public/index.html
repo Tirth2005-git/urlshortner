@@ -29,13 +29,16 @@
 
         try {
           console.log("Sending:", { longUrl, shortCode });
-          const res = await fetch("/shorten", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ longUrl, shortCode }),
-          });
+          const res = await fetch(
+            "http://urlshortner-production-de7b.up.railway.app/shorten",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ longUrl, shortCode }),
+            }
+          );
           if (res.ok) {
             const data = await res.json();
             console.log(data);

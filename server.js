@@ -2,7 +2,6 @@ import http from "http";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 
-
 const PORT = 5000;
 async function serveFile(res, pathf, content) {
   try {
@@ -12,7 +11,6 @@ async function serveFile(res, pathf, content) {
   } catch (err) {
     res.writeHead(404, { "content-type": "text/plain" });
     res.end("page not found");
-   
   }
 }
 
@@ -41,7 +39,9 @@ function sendLink(res, shortCode) {
 
     res.writeHead(200, { "content-type": "application/json" });
     res.end(
-      JSON.stringify({ shorturl: `http://localhost:${PORT}/${shortCode}` })
+      JSON.stringify({
+        shorturl: `http://urlshortner-production-de7b.up.railway.app/${shortCode}`,
+      })
     );
   } catch (err) {
     res.writeHead(400, { "content-type": "text/plain" });
