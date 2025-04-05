@@ -41,7 +41,9 @@
             console.log(data);
             console.log(data.shorturl);
 
-            document.getElementById("result").textContent = data.shorturl;
+            document.getElementById(
+              "result"
+            ).innerHTML = `<a href=${data.shorturl} target="_blank">${data.shorturl}</a>`;
 
             alert("form submitted sucessfully!!!");
           }
