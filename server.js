@@ -35,12 +35,12 @@ async function saveLink(url, links) {
 
 function sendLink(res, shortCode) {
   try {
-    console.log(`http://localhost:${PORT}/${shortCode}`);
+  
 
     res.writeHead(200, { "content-type": "application/json" });
     res.end(
       JSON.stringify({
-        shorturl: `http://urlshortner-production-de7b.up.railway.app/${shortCode}`,
+        shorturl: `https://urlshortner-production-de7b.up.railway.app/${shortCode}`,
       })
     );
   } catch (err) {
