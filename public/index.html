@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>URL Shortener</h2>
+      <input type="url" id="longUrl" placeholder="Enter URL" />
+      <input type="text" id="shortCode" placeholder="Enter shortcode" />
+      <button onclick="shortenUrl()">Shorten</button>
+      <p id="result"></p>
+    </div>
+
+    <script>
+      async function shortenUrl() {
+        const longUrl = document.getElementById("longUrl").value;
+        const shortCode = document.getElementById("shortCode").value;
+        console.log(longUrl, " ", shortCode);
+
+        if (!longUrl || !shortCode) {
+          document.getElementById("result").textContent =
+            "Please fill both fields";
+          return;
+        }
+
+        try {
+          console.log("Sending:", { longUrl, shortCode });
+          const res = await fetch("/shorten", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ longUrl, shortCode }),
+          });
+          if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+            console.log(data.shorturl);
+
+            document.getElementById("result").textContent = data.shorturl;
+
+            alert("form submitted sucessfully!!!");
+          }
+        } catch (err) {
+          alert(err);
+        }
+      }
+    </script>
+  </body>
+</html>
