@@ -9,51 +9,12 @@
   <body>
     <div class="container">
       <h2>URL Shortener</h2>
-      <input type="url" id="longUrl" placeholder="Enter URL" />
-      <input type="text" id="shortCode" placeholder="Enter shortcode" />
-      <button onclick="shortenUrl()">Shorten</button>
+      <input type="url" id="longUrl" placeholder="Enter URL" required/>
+      <input type="text" id="shortCode" placeholder="Enter shortcode" required />
+      <button>Shorten</button>
       <p id="result"></p>
     </div>
 
-    <script>
-      async function shortenUrl() {
-        const longUrl = document.getElementById("longUrl").value;
-        const shortCode = document.getElementById("shortCode").value;
-        console.log(longUrl, " ", shortCode);
-
-        if (!longUrl || !shortCode) {
-          document.getElementById("result").textContent =
-            "Please fill both fields";
-          return;
-        }
-
-        try {
-          console.log("Sending:", { longUrl, shortCode });
-          const res = await fetch(
-            "https://urlshortner-production-de7b.up.railway.app/shorten",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ longUrl, shortCode }),
-            }
-          );
-          if (res.ok) {
-            const data = await res.json();
-            console.log(data);
-            console.log(data.shorturl);
-
-            document.getElementById(
-              "result"
-            ).innerHTML = `<a href=${data.shorturl} target="_blank">${data.shorturl}</a>`;
-
-            alert("url has been shortened sucessfully!!!");
-          }
-        } catch (err) {
-          alert(err);
-        }
-      }
-    </script>
+    <script src="script.js" type="module"></script>
   </body>
 </html>
