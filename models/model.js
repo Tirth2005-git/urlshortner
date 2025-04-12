@@ -11,6 +11,6 @@ export async function saveLink(links) {
 
 export function sendLink(res, shortcode) {
   res.status(200).json({
-    shorturl: `${process.env.HOST}` + `${shortcode}`,
+    shorturl: `https://urlshortner-production-de7b.up.railway.app/` + `${shortcode}`,
   });
 }
