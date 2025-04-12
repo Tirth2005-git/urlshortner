@@ -2,7 +2,6 @@ import { readFile, writeFile } from "fs/promises";
 const path = "./data/links.json";
 export async function loadFile() {
   let data = await readFile(path, "utf-8");
-  console.log(data);
   return JSON.parse(data);
 }
 
