@@ -14,10 +14,9 @@ async function shortenUrl() {
   }
 
   try {
-    const post = await fetch("https://urlshortner-production-de7b.up.railway.app/config");
-    const url = await post.json();
-    console.log(url.posturl)
-    const res = await fetch(url.posturl, {
+    const posturl = "https://urlshortner-production-de7b.up.railway.app/shorten"
+   
+    const res = await fetch(posturl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
