@@ -14,7 +14,7 @@ async function shortenUrl() {
   }
 
   try {
-    const post = await fetch("/config");
+    const post = await fetch("https://urlshortner-production-de7b.up.railway.app/config");
     const url = await post.json();
 
     const res = await fetch(url.posturl, {
