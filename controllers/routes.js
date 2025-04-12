@@ -41,6 +41,6 @@ router.get("/:shortcode", async (req, res) => {
       throw new Error("An error has occured");
     }
   } catch (err) {
-    return res.status(500).send(`<h1> error: ${err["message"]} </h1>`);
+    return res.status(500).send(` error: ${err["message"]} `);
   }
 });
